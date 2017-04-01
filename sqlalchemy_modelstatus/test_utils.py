@@ -33,12 +33,14 @@ def nested_dict():
 
 
 def test_flatten(nested_list):
-    assert list(flatten(nested_list)) == range(1, 8)
+    assert list(flatten_iterable(nested_list)) == range(1, 8)
 
 
 def test_nested_values_no_flatten(nested_dict):
-    assert list(nested_values(nested_dict)) == [1, [2, 3], 4, 5, [6], 7, 8, 9]
+    flattened = nested_values(nested_dict, flatten=False)
+    for val in flattened:
+        assert val in [1, 4, 5, [2, 3], [6], {7, 8, 9}]
 
 
 def test_nested_values_with_flatten(nested_dict):
-    assert list(nested_values(nested_dict, flatten=True)) == range(1, 10)
+    assert set(nested_values(nested_dict)) == set(range(1, 10))
