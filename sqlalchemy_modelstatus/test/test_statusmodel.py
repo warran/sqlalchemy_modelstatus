@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 import pytest
-
 from sqlalchemy.ext.declarative import declarative_base
 
-from .statusmodel import *
+from sqlalchemy_modelstatus.statusmodel import *
 
 
 @pytest.fixture
@@ -41,10 +40,54 @@ def status_dict_action_based():
     }
 
 
-Base = declarative_base( )
-class TestModel()
+Base = declarative_base()
 
 
-@pytest.fixture
-def SimpleModelWithStatus():
+@pytest.fixture(scope="module")
+def model_with_status(db_engine, status_dict_status_based):
+    class SimpleModelWithStatus(StatusModel, Base):
+        __table__ = 'simple_model_status'
+        __status__ = status_dict_status_based
+
+    db_engine.create_all()
+
+    yield SimpleModelWithStatus
+
+    db_engine.drop_all()
+
+
+@pytest.fixture(scope="module")
+def model_with_action_status(db_engine, status_dict_action_based):
+    class SimpleModelWithStatus:
+        __table__ = 'action_model_status'
+        __status__ = status_dict_action_based
+
+    db_engine.create_all()
+
+    yield SimpleModelWithStatus
+
+    db_engine.drop_all()
+
+
+def test_has_status_attr(model_with_status, model_with_action_status):
+    pass
+
+
+def test_has_checks(model_with_status, model_with_action_status):
+    pass
+
+
+def test_has_group_checks(model_with_status, model_with_action_status):
+    pass
+
+
+def test_simple_transitions(model_with_status, model_with_action_status):
+    pass
+
+
+def test_previous_transition(model_with_status, model_with_action_status):
+    pass
+
+
+def test_any_transition(model_with_status, model_with_action_status):
     pass
