@@ -2,7 +2,7 @@
 
 import pytest
 
-from ._utils import *
+from sqlalchemy_modelstatus._utils import *
 
 
 @pytest.fixture
