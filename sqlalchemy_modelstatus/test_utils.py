@@ -36,19 +36,5 @@ def test_flatten(nested_list):
     assert list(flatten_iterable(nested_list)) == range(1, 8)
 
 
-def test_nested_values_no_flatten(nested_dict):
-    flattened = nested_values(nested_dict, flatten=False)
-    expected = [1, 4, 5, [2, 3], [6], {7, 8, 9}]
-
-    # lists are not hashable, so we cannot use sets
-    # and the order can be different in the result
-    # so we need a double membership check
-    for val in flattened:
-        assert val in expected
-
-    for val in expected:
-        assert val in flattened
-
-
-def test_nested_values_with_flatten(nested_dict):
+def test_nested_values(nested_dict):
     assert set(nested_values(nested_dict)) == set(range(1, 10))
