@@ -2,6 +2,8 @@
 
 import pytest
 
+from sqlalchemy.ext.declarative import declarative_base
+
 from .statusmodel import *
 
 
@@ -37,6 +39,11 @@ def status_dict_action_based():
             'active': ['online', 'offline', 'locked']
         }
     }
+
+
+Base = declarative_base( )
+class TestModel()
+
 
 @pytest.fixture
 def SimpleModelWithStatus():
