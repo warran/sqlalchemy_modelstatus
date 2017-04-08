@@ -4,6 +4,10 @@ import enum
 
 
 class EnumEqString(str):
+    """
+    Type for strings that allows them to be compared for equality
+    against Enum's, just to bypass need to get out value out of them.
+    """
     def __eq__(self, other):
         if isinstance(other, str):
             return super(EnumEqString, self).__eq__(other)
@@ -14,6 +18,10 @@ class EnumEqString(str):
 
 
 class StrinqEqEnum(enum.Enum):
+    """
+    Type for Enums that allows them to be compared for equality
+    against strings, just to bypass need to get out value.
+    """
     def __eq__(self, other):
         if isinstance(other, str):
             return self.value == other
