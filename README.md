@@ -51,7 +51,7 @@ class MyModel(StatusModelMixin, Base):
 
 This definition relates to the following state diagram
 
-![Status diagram](https://ibb.co/d4L3vk)
+![Status diagram](https://image.ibb.co/nLtOvk/status_diagram.png)
 
 #### Attributes
 
